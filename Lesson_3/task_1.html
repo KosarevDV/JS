@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Урок 3. Задание 1.</title>
+</head>
+<body>
+    <script>
+
+        // С помощью цикла while вывести все простые числа в промежутке от 0 до 100.
+
+        'use strict';
+
+        let array = [];
+        for (let el = 0; el < 101; el++) {
+            array.push(el);
+        }
+        array[1] = 0;
+        let i = 2;
+        let j = 0;
+        while (i < 101) {
+            if (array[i] !== 0) {
+               j = i * 2
+            }
+            while (j < 100) {
+                array[j] = 0;
+                j = j + i;
+            }
+            i++;
+        }
+        let result  =  array.filter(function (elem){
+            return elem !== 0;
+            })
+
+        console.log(result);
+
+    </script>
+</body>
+</html>
