@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task2</title>
+</head>
+<body>
+<script>
+    const basket = {
+        products: [{
+            id: '01',
+            name: 'Beer',
+            price: 100,
+            amount: 4
+        },
+            {id:'02',
+                name: 'Cognac',
+                price: 3000,
+                amount: 1},
+            {id: '03',
+                name: 'vine',
+                price: 1200,
+                amount: 2}],
+        countTotal(){
+            return this.products.reduce((totalPrice, product)=>totalPrice += product.price*product.amount, 0);
+        },
+        addProduct(id, name, price, amount){
+            this.products.push({id, name, price, amount});
+        }
+    };
+    console.log(basket.countTotal());
+
+    basket.addProduct('05','whiskey', 2000, 1);
+
+    console.log(basket.countTotal());
+
+</script>
+</body>
+</html>
