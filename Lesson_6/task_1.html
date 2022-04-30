@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task2</title>
+    <style>
+        .head {
+            background-color: rgb(222, 235, 229);
+            margin-bottom: 20px;
+        }
+
+        .bottom {
+            background-color: rgb(164, 165, 236);
+            margin-bottom: 20px;
+            height: 40vh;
+        }
+
+        .catalog_item {
+            display: flex;
+            justify-content: space-between;
+            border: 1px solid black;
+            margin-bottom: 10px;
+            background-color: lightgreen;
+            opacity: 0.9;
+        }
+
+        .basket {
+            margin-top: 10px;
+            font-weight: bolder;
+        }
+
+        .basket_item {
+            border: 1px solid black;
+            margin-top: 10px;
+            background-color: rgba(255, 252, 250, 0.671);
+        }
+
+        img {
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="head">
+        <div class="catalog_head">
+            <h1>Каталог</h1>
+        </div>
+        <div class="catalog"></div>
+    </div>
+    <div class="bottom">
+        <h2>Корзина</h2>
+        <div class="basket"></div>
+        <button class="delButton">Очистить корзину</button>
+    </div>
+    <script src="basketCatalog.js"></script>
+</body>
+
+</html>
