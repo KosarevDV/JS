@@ -8,19 +8,22 @@ const catalog = {
         id: 1,
         name: 'Пивас',
         price: 100,
-        image: 'images/beer.jpg'
+        image: 'images/beer.jpg',
+        fullImage: 'images/hvatit.jpg'
     }, {
         id: 2,
         name: 'Коньячок',
         price: 3000,
-        image: 'images/cognac.jpg'
+        image: 'images/cognac.jpg',
+        fullImage: 'images/hvatit.jpg'
     }, {
         id: 3,
         name: 'Винчик',
         price: 1200,
-        amount: 2,
-        image: 'images/vine.jpg'
+        image: 'images/vine.jpg',
+        fullImage: 'images/hvatit.jpg'
     }],
+
     // инициализация каталога
     init() {
         this.blockRender = document.querySelector('.catalog'); //ищем место для отрисовки
@@ -29,6 +32,7 @@ const catalog = {
         this.addEventHandlers(); // добавляем обработчики событий 
         this.button = document.querySelector('.addToBasketButton');
     },
+
     // отрисовка каталога
     render() {
         this.blockRender.innerHTML = '';  //предварительно очищаем каталог
@@ -44,17 +48,41 @@ const catalog = {
                         <div>Цена товара:<b>${product.price}</b></div>
                         <button class="addToBasketButton" data-id_product="${product.id}" > В корзину</button>
                     </div>
-                    <img src= ${product.image} alt= "picture"></img>
+                    <img class="min_picture" src= ${product.image} data-full_img=${product.fullImage}  alt= "picture"></img>
                 </div>`
     },
 
     addEventHandlers() {
-        this.button = document.querySelector('.addToBasketButton');
-        this.blockRender.addEventListener('click', event => this.addToBasket(event));
+        //this.button = document.querySelector('.addToBasketButton');
+        this.blockRender.addEventListener('click', event => this.clickHandler(event));
     },
+    // если по кнопке то в корзину, если по картинке то рисуем полную версию
+    clickHandler(event) {
+        if (event.target.classList.contains('addToBasketButton')) {
+            this.addToBasket(event)
+        }
+        else if (event.target.classList.contains('min_picture')) {
+            this.blockRender.insertAdjacentHTML('beforeend', this.fullImgRender(event.target.dataset.full_img))
+        }
+        else if (event.target.classList.contains('galleryWrapperClose')) {
+            this.close()
+        };
+    },
+
+    fullImgRender(picture) {
+        return `<div class="galleryWrapper">
+                    <div class="galleryWrapperContainer"></div>
+                    <img class="galleryWrapperClose" src="images/close.png" alt="">
+                    <img class="galleryWrapperImage" src=${picture} alt="">
+                </div>`
+    },
+
+    close() {
+        document.querySelector('.galleryWrapper').remove()
+    },
+
     // метод добавления продукта в корзину
     addToBasket(event) {
-        if (!event.target.classList.contains('addToBasketButton')) return;
         const id_product = +event.target.dataset.id_product;
         const productToAdd = this.products.find((product) => product.id === id_product);
         this.basket.addProductToBasket(productToAdd);
