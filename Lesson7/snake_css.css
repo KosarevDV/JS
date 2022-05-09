@@ -39,6 +39,10 @@ td.cell {
     background: #00d021;
 }
 
+.obstacle {
+    background: yellow;
+}
+
 .snakeBody {
     background: #e5e5e5;
 }
